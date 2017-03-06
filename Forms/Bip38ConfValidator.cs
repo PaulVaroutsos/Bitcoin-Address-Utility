@@ -132,7 +132,7 @@ namespace BtcAddress.Forms {
 
             // derive encryption key material
             byte[] derived = new byte[64];
-            SCrypt.ComputeKey(intermediate.passpoint, addresshashplusownersalt, 1024, 1, 1, 1, derived);
+            CryptSharp.Utility.SCrypt.ComputeKey(intermediate.passpoint, addresshashplusownersalt, 1024, 1, 1, 1, derived);
 
             byte[] derivedhalf2 = new byte[32];
             Array.Copy(derived, 32, derivedhalf2, 0, 32);
