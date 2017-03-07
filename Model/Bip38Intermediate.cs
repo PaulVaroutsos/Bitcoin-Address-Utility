@@ -209,7 +209,7 @@ namespace Casascius.Bitcoin {
 
             UTF8Encoding utf8 = new UTF8Encoding(false);
             byte[] prefactorA = new byte[32];
-            SCrypt.ComputeKey(utf8.GetBytes(passphrase), ownersalt, 16384, 8, 8, 8, prefactorA);
+            CryptSharp.Utility.SCrypt.ComputeKey(utf8.GetBytes(passphrase), ownersalt, 16384, 8, 8, 8, prefactorA);
 
             if (LotSequencePresent) {
                 derivedBytes = prefactorA;

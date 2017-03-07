@@ -89,7 +89,7 @@ namespace Casascius.Bitcoin {
                 byte[] addresshash = new byte[] { hex[3], hex[4], hex[5], hex[6] };
 
                 byte[] derivedBytes = new byte[64];
-                SCrypt.ComputeKey(utf8.GetBytes(passphrase), addresshash, 16384, 8, 8, 8, derivedBytes);
+                CryptSharp.Utility.SCrypt.ComputeKey(utf8.GetBytes(passphrase), addresshash, 16384, 8, 8, 8, derivedBytes);
 
                 var aes = Aes.Create();
                 aes.KeySize = 256;
@@ -202,7 +202,7 @@ namespace Casascius.Bitcoin {
             Array.Copy(hex, 3, addresshashplusownerentropy, 0, 4);
             Array.Copy(intermediate.ownerentropy, 0, addresshashplusownerentropy, 4, 8);
             byte[] derived = new byte[64];
-            SCrypt.ComputeKey(intermediate.passpoint, addresshashplusownerentropy, 1024, 1, 1, 1, derived);
+            CryptSharp.Utility.SCrypt.ComputeKey(intermediate.passpoint, addresshashplusownerentropy, 1024, 1, 1, 1, derived);
             byte[] derivedhalf2 = new byte[32];
             Array.Copy(derived, 32, derivedhalf2, 0, 32);
 
@@ -269,7 +269,7 @@ namespace Casascius.Bitcoin {
             byte[] addresshash = new byte[] { addrhashfull[0], addrhashfull[1], addrhashfull[2], addrhashfull[3] };
 
             byte[] derivedBytes = new byte[64];
-            SCrypt.ComputeKey(utf8.GetBytes(passphrase), addresshash, 16384, 8, 8, 8, derivedBytes);
+            CryptSharp.Utility.SCrypt.ComputeKey(utf8.GetBytes(passphrase), addresshash, 16384, 8, 8, 8, derivedBytes);
 
             var aes = Aes.Create();
             aes.KeySize = 256;
@@ -346,7 +346,7 @@ namespace Casascius.Bitcoin {
 
             // derive encryption key material
             derived = new byte[64];
-            SCrypt.ComputeKey(intermediate.passpoint, addresshashplusownerentropy, 1024, 1, 1, 1, derived);
+            CryptSharp.Utility.SCrypt.ComputeKey(intermediate.passpoint, addresshashplusownerentropy, 1024, 1, 1, 1, derived);
 
             byte[] derivedhalf2 = new byte[32];
             Array.Copy(derived, 32, derivedhalf2, 0, 32);
